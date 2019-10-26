@@ -3,6 +3,7 @@ package frc.robot;
 import com.revrobotics.CANSparkMax;
 import com.revrobotics.CANSparkMaxLowLevel;
 import edu.wpi.first.wpilibj.Joystick;
+import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.TimedRobot;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.shuffleboard.Shuffleboard;
@@ -22,6 +23,7 @@ import java.util.Arrays;
  *
  * @see CANSparkMax
  */
+@SuppressWarnings("FieldCanBeLocal")
 public class Robot extends TimedRobot {
 
     //Define CAN Object variables
@@ -30,9 +32,10 @@ public class Robot extends TimedRobot {
     private CANSparkMax m_rightFront;
     private CANSparkMax m_rightAft;
 
-    //Define DifferentialDrive variables
-    private DifferentialDrive m_driveFront;
-    private DifferentialDrive m_driveAft;
+    //Define SpeedControllerGroups and DifferentialDrives
+    private SpeedControllerGroup m_left;
+    private SpeedControllerGroup m_right;
+    private DifferentialDrive m_drive;
 
     //Define Joysticks
     private Joystick m_joy;
@@ -66,9 +69,10 @@ public class Robot extends TimedRobot {
         m_leftAft.follow(m_leftFront,false);
         m_rightAft.follow(m_rightFront,false);
 
-        //Instantiate DifferentialDrives
-        m_driveFront = new DifferentialDrive(m_leftFront,m_rightFront);
-        m_driveAft = new DifferentialDrive(m_leftAft,m_rightAft);
+        //Instantiate SpeedControllerGroups and DifferentialDrives
+        m_left = new SpeedControllerGroup(m_leftAft,m_leftFront);
+        m_right = new SpeedControllerGroup(m_rightAft,m_rightFront);
+        m_drive = new DifferentialDrive(m_left,m_right);
 
         //Instantiate Joystick
         m_joy = new Joystick(0);
@@ -110,12 +114,10 @@ public class Robot extends TimedRobot {
     @Override
     public void teleopPeriodic() {
         //Put percent output to SmartDashboard
-        Shuffleboard.getTab("DRIVETRAIN").add(m_driveFront);
-        Shuffleboard.getTab("DRIVETRAIN").add(m_driveAft);
+        Shuffleboard.getTab("DRIVETRAIN").add(m_drive);
 
         //Arcade drive the robot
-        m_driveFront.arcadeDrive(-m_joy.getY(),m_joy.getX());
-        m_driveAft.arcadeDrive(-m_joy.getY(),m_joy.getX());
+        m_drive.arcadeDrive(-m_joy.getY(),m_joy.getX());
 
         //Print diagnostic statistics every 10 iterations
         looperCounter++;
