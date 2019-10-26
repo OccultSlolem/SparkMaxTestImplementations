@@ -147,3 +147,6 @@ $RECYCLE.BIN/
 *.lnk
 
 # End of https://www.gitignore.io/api/code,java,windows,intellij+all
+
+*.bin
+*.lock
