@@ -1,7 +1,7 @@
 package frc.robot;
 
 import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel;
+import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.SpeedControllerGroup;
 import edu.wpi.first.wpilibj.TimedRobot;
@@ -54,10 +54,10 @@ public class Robot extends TimedRobot {
         StringBuilder _initSb = new StringBuilder();
 
         //Instantiate CANSparkMaxes
-        m_leftFront = new CANSparkMax(0, CANSparkMaxLowLevel.MotorType.kBrushless);
-        m_rightFront = new CANSparkMax(1, CANSparkMaxLowLevel.MotorType.kBrushless);
-        m_leftAft = new CANSparkMax(2, CANSparkMaxLowLevel.MotorType.kBrushless);
-        m_rightAft = new CANSparkMax(3, CANSparkMaxLowLevel.MotorType.kBrushless);
+        m_leftFront = new CANSparkMax(0, MotorType.kBrushless);
+        m_rightFront = new CANSparkMax(1, MotorType.kBrushless);
+        m_leftAft = new CANSparkMax(2, MotorType.kBrushless);
+        m_rightAft = new CANSparkMax(3, MotorType.kBrushless);
 
         //Reset Spark Maxes to factory default
         m_leftFront.restoreFactoryDefaults();
