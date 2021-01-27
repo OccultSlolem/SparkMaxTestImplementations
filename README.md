@@ -1,6 +1,8 @@
 # SparkMaxTestImplementations
 This repo represents various experiments I have been doing on programming with the [Spark MAX Motor Controllers](http://www.revrobotics.com/rev-11-2158/). Each folder underneath the root directory of the repo represents their own implementation, with their own unique codebases. If you want to see the actual meat and potatoes of the implementations, go down the src/main/java/ folder and find the Robot class in each implementation.
 
+**Warning: This code hasn't been maintained for a while. I don't gurantee its compatatibility with the latest SDK.** I wrote this a few months after the Spark MAX was released to get an idea of how it would be to program with it. It has not and will not be updated to use the latest version of the Spark MAX SDK. If in doubt, defer to Rev Robotics'/WPI's documentation.
+
 
 ## Setup  ##
 
